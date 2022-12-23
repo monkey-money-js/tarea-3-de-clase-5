@@ -1,0 +1,14 @@
+body{
+    background-color: rgba(13, 119, 225, 0.7);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+input{
+    margin: 5px;
+    padding: 2px;
+    display: inline-block;
+}
