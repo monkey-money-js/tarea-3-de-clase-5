@@ -2,14 +2,14 @@ const $botonSiguiente = document.querySelector('.boton-siguiente');
 
 $botonSiguiente.onclick = function(){
     const cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
-    const arrayDeInputs = crearNodeDeInputs(cantidadDeVideos);
+    const nodeDeInputs = crearNodeDeInputs(cantidadDeVideos);
 }
 
 function crearNodeDeInputs(cantidadDeVideos){
-    const arrayDeInputs = [];
+    const nodeDeInputs = [];
     let inputCreado = document.createElement('input');
     for (let i=0; i<cantidadDeVideos.length; i++){
-        arrayDeInputs.push(inputCreado);
+        nodeDeInputs.push(inputCreado);
     }
-    return arrayDeInputs;
+    return nodeDeInputs;
 }
