@@ -2,13 +2,23 @@ const $botonSiguiente = document.querySelector('.boton-siguiente');
 let $divVideos = document.querySelector('.div-videos');
 
 $botonSiguiente.onclick = function(){
-    const cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
+    let cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
+    borrarInputsAnteriores(cantidadDeVideos);
     
     agregarInputsAlDiv(cantidadDeVideos);
 }
 
+function borrarInputsAnteriores(){
+    const nodeDivDeTiempo = document.querySelectorAll('.divDeTiempo');
+    for (let i = 0; i < nodeDivDeTiempo.length; i++) {
+        nodeDivDeTiempo[i].remove();
+    }
+}
+
+
 function agregarInputsAlDiv(cantidadDeVideos){
     let ternaDeInputs;
+    
     for (let i=0; i<cantidadDeVideos; i++){
         ternaDeInputs = crearDivInputsTiempo();
         $divVideos.appendChild(ternaDeInputs);
@@ -35,12 +45,4 @@ function crearDivInputsTiempo(){
         $divDeTresInputs.appendChild(nodeDeInputs[i]);
     }
     return $divDeTresInputs;
-}
-
-/*
-function borrarInputsAnteriores(cantidadDeVideos){
-    const nodeDivDeTiempo = document.querySelectorAll('.divDeTiempo');
-    for (let i = 0; i < cantidadDeVideos; i++) {
-        nodeDivDeTiempo[i].remove();
-    }
 }
