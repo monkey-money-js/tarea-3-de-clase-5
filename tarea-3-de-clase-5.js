@@ -1,15 +1,46 @@
 const $botonSiguiente = document.querySelector('.boton-siguiente');
+let $divVideos = document.querySelector('.div-videos');
 
 $botonSiguiente.onclick = function(){
     const cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
-    const nodeDeInputs = crearNodeDeInputs(cantidadDeVideos);
+    
+    agregarInputsAlDiv(cantidadDeVideos);
 }
 
-function crearNodeDeInputs(cantidadDeVideos){
-    const nodeDeInputs = [];
-    let inputCreado = document.createElement('input');
-    for (let i=0; i<cantidadDeVideos.length; i++){
-        nodeDeInputs.push(inputCreado);
+function agregarInputsAlDiv(cantidadDeVideos){
+    let ternaDeInputs;
+    for (let i=0; i<cantidadDeVideos; i++){
+        ternaDeInputs = crearDivInputsTiempo();
+        $divVideos.appendChild(ternaDeInputs);
     }
-    return nodeDeInputs;
+}
+
+function crearDivInputsTiempo(){
+    const $divDeTresInputs = document.createElement('div');
+    $divDeTresInputs.className = 'divDeTiempo';
+    $divDeTresInputs.textContent = 'Ingrese horas, minutos y segundos';
+
+    const inputHoras = document.createElement('input');
+    inputHoras.className = 'horas';
+
+    const inputMinutos = document.createElement('input');
+    inputMinutos.className = 'minutos';
+
+    const inputSegundos = document.createElement('input');
+    inputSegundos.className = 'segundos';
+
+    const nodeDeInputs = [inputHoras, inputMinutos, inputSegundos];
+
+    for (let i=0; i<3; i++){
+        $divDeTresInputs.appendChild(nodeDeInputs[i]);
+    }
+    return $divDeTresInputs;
+}
+
+/*
+function borrarInputsAnteriores(cantidadDeVideos){
+    const nodeDivDeTiempo = document.querySelectorAll('.divDeTiempo');
+    for (let i = 0; i < cantidadDeVideos; i++) {
+        nodeDivDeTiempo[i].remove();
+    }
 }
