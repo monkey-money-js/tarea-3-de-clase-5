@@ -32,3 +32,7 @@ button{
     width: 35px;
     background-color: rgba(64, 113, 143, 0.9);
 }
+
+.oculto{
+    display: none;
+}

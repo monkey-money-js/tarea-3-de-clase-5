@@ -1,4 +1,4 @@
-const $botonSiguiente = document.querySelector('.boton-siguiente');
+const $botonSiguiente = document.querySelector('#boton-siguiente');
 let $divVideos = document.querySelector('.div-videos');
 
 $botonSiguiente.onclick = function(){
