@@ -3,7 +3,7 @@ let $divVideos = document.querySelector('.div-videos');
 
 $botonSiguiente.onclick = function(){
     let cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
-    borrarInputsAnteriores(cantidadDeVideos);
+    borrarInputsAnteriores();
     
     agregarInputsAlDiv(cantidadDeVideos);
 }
