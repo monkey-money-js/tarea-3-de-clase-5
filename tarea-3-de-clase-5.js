@@ -1,11 +1,17 @@
 const $botonSiguiente = document.querySelector('#boton-siguiente');
+const $botonCalcularTiempo = document.querySelector('#boton-calcular-tiempo');
 let $divVideos = document.querySelector('.div-videos');
 
 $botonSiguiente.onclick = function(){
+    mostrarBotonTiempo();
     let cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
     borrarInputsAnteriores();
     
     agregarInputsAlDiv(cantidadDeVideos);
+}
+
+function mostrarBotonTiempo(){
+    $botonCalcularTiempo.className = '';
 }
 
 function borrarInputsAnteriores(){
@@ -45,4 +51,9 @@ function crearDivInputsTiempo(){
         $divDeTresInputs.appendChild(nodeDeInputs[i]);
     }
     return $divDeTresInputs;
+}
+
+
+$botonCalcularTiempo.onclick = function(){
+    
 }
