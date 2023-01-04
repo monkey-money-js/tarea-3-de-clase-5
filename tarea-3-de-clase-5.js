@@ -55,5 +55,44 @@ function crearDivInputsTiempo(){
 
 
 $botonCalcularTiempo.onclick = function(){
+    const arrayHoras = document.querySelectorAll('.horas');
+    const arrayMinutos = document.querySelectorAll('.minutos');
+    const arraySegundos = document.querySelectorAll('.segundos');
+
+    calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos);
+}
+
+function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
     
+    let tiempoTotalHoras = 0;
+    let tiempoTotalMinutos = 0;
+    let tiempoTotalSegundos = 0;
+
+    for (let i = 0; i < arraySegundos.length; i++) {
+        tiempoTotalSegundos += Number(arraySegundos[i].value || 0);
+        if (tiempoTotalSegundos > 59){
+            tiempoTotalMinutos++;
+            tiempoTotalSegundos = tiempoTotalSegundos - 60;
+        }
+    }
+    if (tiempoTotalSegundos > 59){
+        tiempoTotalMinutos++;
+        tiempoTotalSegundos = 0;
+    }
+
+    for (let i = 0; i < arrayMinutos.length; i++) {
+        tiempoTotalMinutos += Number(arrayMinutos[i].value || 0);
+        if (tiempoTotalMinutos > 59){
+            tiempoTotalHoras++;
+            tiempoTotalMinutos = tiempoTotalMinutos - 60;
+        }
+    }
+    if (tiempoTotalMinutos > 59){
+        tiempoTotalHoras++;
+        tiempoTotalMinutos = 0;
+    }
+
+    for (let i = 0; i < arrayHoras.length; i++) {
+        tiempoTotalHoras += Number(arrayHoras[i].value || 0);
+    }
 }
