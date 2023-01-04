@@ -1,14 +1,18 @@
 const $botonSiguiente = document.querySelector('#boton-siguiente');
 const $botonCalcularTiempo = document.querySelector('#boton-calcular-tiempo');
+
 let $divVideos = document.querySelector('.div-videos');
+let $divResultados = document.querySelector('.resultados');
 
 $botonSiguiente.onclick = function(){
     mostrarBotonTiempo();
     let cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
     borrarInputsAnteriores();
+    borrarTextoResultado();
     
     agregarInputsAlDiv(cantidadDeVideos);
 }
+
 
 function mostrarBotonTiempo(){
     $botonCalcularTiempo.className = '';
@@ -21,6 +25,9 @@ function borrarInputsAnteriores(){
     }
 }
 
+function  borrarTextoResultado(){
+    $divResultados.textContent = '';
+}
 
 function agregarInputsAlDiv(cantidadDeVideos){
     let ternaDeInputs;
@@ -95,4 +102,10 @@ function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
     for (let i = 0; i < arrayHoras.length; i++) {
         tiempoTotalHoras += Number(arrayHoras[i].value || 0);
     }
+
+    agregaTextoResultadosTiempoTotal(tiempoTotalHoras, tiempoTotalMinutos, tiempoTotalSegundos);
+}
+
+function agregaTextoResultadosTiempoTotal(tiempoTotalHoras, tiempoTotalMinutos, tiempoTotalSegundos){
+    $divResultados.textContent = `El tiempo total es ${tiempoTotalHoras} horas, ${tiempoTotalMinutos} minutos y ${tiempoTotalSegundos} segundos.`
 }
