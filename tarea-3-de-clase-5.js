@@ -107,5 +107,5 @@ function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
 }
 
 function agregaTextoResultadosTiempoTotal(tiempoTotalHoras, tiempoTotalMinutos, tiempoTotalSegundos){
-    $divResultados.textContent = `El tiempo total es ${tiempoTotalHoras} horas, ${tiempoTotalMinutos} minutos y ${tiempoTotalSegundos} segundos.`
+    $divResultados.textContent = `El tiempo total es ${tiempoTotalHoras || 0} horas, ${tiempoTotalMinutos || 0} minutos y ${tiempoTotalSegundos || 0} segundos.`
 }
