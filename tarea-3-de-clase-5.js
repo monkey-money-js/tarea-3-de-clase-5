@@ -10,7 +10,9 @@ $botonSiguiente.onclick = function(){
     borrarInputsAnteriores();
     borrarTextoResultado();
     
-    agregarInputsAlDiv(cantidadDeVideos);
+    for (let i = 0; i < cantidadDeVideos; i++) {
+        $videos.appendChild(crearClases());   
+    }
 }
 
 
@@ -29,15 +31,8 @@ function  borrarTextoResultado(){
     $resultados.textContent = '';
 }
 
-function agregarInputsAlDiv(cantidadDeVideos){
-    
-    for (let i=0; i<cantidadDeVideos; i++){
-        const conjuntoDeTresInputs = crearClases();
-        $videos.appendChild(conjuntoDeTresInputs);
-    }
-}
-
 function crearClases(){
+
     const $conjuntoTresInputs = document.createElement('div');
     $conjuntoTresInputs.className = 'node-tiempo';
     $conjuntoTresInputs.textContent = 'Ingrese horas, minutos y segundos';
@@ -52,10 +47,11 @@ function crearClases(){
     inputSegundos.className = 'segundos';
 
     const nodeDeInputs = [inputHoras, inputMinutos, inputSegundos];
-
+    
     for (let i=0; i<3; i++){
         $conjuntoTresInputs.appendChild(nodeDeInputs[i]);
     }
+
     return $conjuntoTresInputs;
 }
 
