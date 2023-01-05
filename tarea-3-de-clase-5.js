@@ -1,12 +1,12 @@
 const $botonSiguiente = document.querySelector('#boton-siguiente');
 const $botonCalcularTiempo = document.querySelector('#boton-calcular-tiempo');
 
-let $divVideos = document.querySelector('.div-videos');
-let $divResultados = document.querySelector('.resultados');
+const $videos = document.querySelector('.videos');
+const $resultados = document.querySelector('.resultados');
 
 $botonSiguiente.onclick = function(){
     mostrarBotonTiempo();
-    let cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
+    const cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
     borrarInputsAnteriores();
     borrarTextoResultado();
     
@@ -19,29 +19,28 @@ function mostrarBotonTiempo(){
 }
 
 function borrarInputsAnteriores(){
-    const nodeDivDeTiempo = document.querySelectorAll('.divDeTiempo');
-    for (let i = 0; i < nodeDivDeTiempo.length; i++) {
-        nodeDivDeTiempo[i].remove();
+    const nodeDeTiempo = document.querySelectorAll('.node-tiempo');
+    for (let i = 0; i < nodeDeTiempo.length; i++) {
+        nodeDeTiempo[i].remove();
     }
 }
 
 function  borrarTextoResultado(){
-    $divResultados.textContent = '';
+    $resultados.textContent = '';
 }
 
 function agregarInputsAlDiv(cantidadDeVideos){
-    let ternaDeInputs;
     
     for (let i=0; i<cantidadDeVideos; i++){
-        ternaDeInputs = crearDivInputsTiempo();
-        $divVideos.appendChild(ternaDeInputs);
+        const conjuntoDeTresInputs = crearClases();
+        $videos.appendChild(conjuntoDeTresInputs);
     }
 }
 
-function crearDivInputsTiempo(){
-    const $divDeTresInputs = document.createElement('div');
-    $divDeTresInputs.className = 'divDeTiempo';
-    $divDeTresInputs.textContent = 'Ingrese horas, minutos y segundos';
+function crearClases(){
+    const $conjuntoTresInputs = document.createElement('div');
+    $conjuntoTresInputs.className = 'node-tiempo';
+    $conjuntoTresInputs.textContent = 'Ingrese horas, minutos y segundos';
 
     const inputHoras = document.createElement('input');
     inputHoras.className = 'horas';
@@ -55,28 +54,28 @@ function crearDivInputsTiempo(){
     const nodeDeInputs = [inputHoras, inputMinutos, inputSegundos];
 
     for (let i=0; i<3; i++){
-        $divDeTresInputs.appendChild(nodeDeInputs[i]);
+        $conjuntoTresInputs.appendChild(nodeDeInputs[i]);
     }
-    return $divDeTresInputs;
+    return $conjuntoTresInputs;
 }
 
 
 $botonCalcularTiempo.onclick = function(){
-    const arrayHoras = document.querySelectorAll('.horas');
-    const arrayMinutos = document.querySelectorAll('.minutos');
-    const arraySegundos = document.querySelectorAll('.segundos');
+    const horas = document.querySelectorAll('.horas');
+    const minutos = document.querySelectorAll('.minutos');
+    const segundos = document.querySelectorAll('.segundos');
 
-    calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos);
+    calcularTiempoTotal(horas,minutos,segundos);
 }
 
-function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
+function calcularTiempoTotal(horas,minutos,segundos){
     
     let tiempoTotalHoras = 0;
     let tiempoTotalMinutos = 0;
     let tiempoTotalSegundos = 0;
 
-    for (let i = 0; i < arraySegundos.length; i++) {
-        tiempoTotalSegundos += Number(arraySegundos[i].value || 0);
+    for (let i = 0; i < segundos.length; i++) {
+        tiempoTotalSegundos += Number(segundos[i].value || 0);
         if (tiempoTotalSegundos > 59){
             tiempoTotalMinutos++;
             tiempoTotalSegundos = tiempoTotalSegundos - 60;
@@ -87,8 +86,8 @@ function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
         tiempoTotalSegundos = 0;
     }
 
-    for (let i = 0; i < arrayMinutos.length; i++) {
-        tiempoTotalMinutos += Number(arrayMinutos[i].value || 0);
+    for (let i = 0; i < minutos.length; i++) {
+        tiempoTotalMinutos += Number(minutos[i].value || 0);
         if (tiempoTotalMinutos > 59){
             tiempoTotalHoras++;
             tiempoTotalMinutos = tiempoTotalMinutos - 60;
@@ -99,13 +98,13 @@ function calcularTiempoTotal(arrayHoras,arrayMinutos,arraySegundos){
         tiempoTotalMinutos = 0;
     }
 
-    for (let i = 0; i < arrayHoras.length; i++) {
-        tiempoTotalHoras += Number(arrayHoras[i].value || 0);
+    for (let i = 0; i < horas.length; i++) {
+        tiempoTotalHoras += Number(horas[i].value || 0);
     }
 
     agregaTextoResultadosTiempoTotal(tiempoTotalHoras, tiempoTotalMinutos, tiempoTotalSegundos);
 }
 
 function agregaTextoResultadosTiempoTotal(tiempoTotalHoras, tiempoTotalMinutos, tiempoTotalSegundos){
-    $divResultados.textContent = `El tiempo total es ${tiempoTotalHoras} horas, ${tiempoTotalMinutos} minutos y ${tiempoTotalSegundos} segundos.`
+    $resultados.textContent = `El tiempo total es ${tiempoTotalHoras} horas, ${tiempoTotalMinutos} minutos y ${tiempoTotalSegundos} segundos.`
 }
