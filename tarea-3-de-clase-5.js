@@ -7,7 +7,7 @@ const $resultados = document.querySelector('.resultados');
 $botonSiguiente.onclick = function(){
     mostrarBotonTiempo();
     const cantidadDeVideos = Number(document.querySelector('.cantidad-videos').value);
-    borrarInputsAnteriores();
+    borrarInputs();
     borrarTextoResultado();
     
     for (let i = 0; i < cantidadDeVideos; i++) {
@@ -20,10 +20,10 @@ function mostrarBotonTiempo(){
     $botonCalcularTiempo.className = '';
 }
 
-function borrarInputsAnteriores(){
-    const nodeDeTiempo = document.querySelectorAll('.node-tiempo');
-    for (let i = 0; i < nodeDeTiempo.length; i++) {
-        nodeDeTiempo[i].remove();
+function borrarInputs(){
+    const tiempo = document.querySelectorAll('.tiempo');
+    for (let i = 0; i < tiempo.length; i++) {
+        tiempo[i].remove();
     }
 }
 
@@ -33,9 +33,9 @@ function  borrarTextoResultado(){
 
 function crearClases(){
 
-    const $conjuntoTresInputs = document.createElement('div');
-    $conjuntoTresInputs.className = 'node-tiempo';
-    $conjuntoTresInputs.textContent = 'Ingrese horas, minutos y segundos';
+    const $conjuntoInputs = document.createElement('div');
+    $conjuntoInputs.className = 'tiempo';
+    $conjuntoInputs.textContent = 'Ingrese horas, minutos y segundos';
 
     const inputHoras = document.createElement('input');
     inputHoras.className = 'horas';
@@ -46,13 +46,14 @@ function crearClases(){
     const inputSegundos = document.createElement('input');
     inputSegundos.className = 'segundos';
 
-    const nodeDeInputs = [inputHoras, inputMinutos, inputSegundos];
+    const inputs = [inputHoras, inputMinutos, inputSegundos];
     
-    for (let i=0; i<3; i++){
-        $conjuntoTresInputs.appendChild(nodeDeInputs[i]);
+    const unidadesDeTiempo = 3;
+    for (let i=0; i<unidadesDeTiempo; i++){
+        $conjuntoInputs.appendChild(inputs[i]);
     }
 
-    return $conjuntoTresInputs;
+    return $conjuntoInputs;
 }
 
 
